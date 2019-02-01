@@ -1,0 +1,9 @@
+.DetailView {
+    background-color: white;
+    display: inline-block;
+    width:100%;
+}
+
+.DetailView img {
+    width: 100%;
+}
