@@ -7,3 +7,12 @@
 .DetailView img {
     width: 100%;
 }
+
+.DetailView .Content {
+    padding: 1em;
+
+}
+
+.DetailView .Content p {
+    text-align: left;
+}

@@ -47,6 +47,7 @@ interface DetailProps {
       if (unit) {
         return (
             <div className="DetailView">
+              <div className="Content">
                 <h3>ID: {unit.id}</h3>
                 {
                   unit.picture_url
@@ -61,44 +62,50 @@ interface DetailProps {
                 }
                 
                 <p>{`${unit.street_address && unit.street_address.fi}, ${unit.address_zip} ${unit.municipality ? unit.municipality.charAt(0).toUpperCase() + unit.municipality.slice(1) : ''}`}</p>
-                <CustomExpansionPanel content={[
-                  {
-                    label: "Esteettömyys",
-                    children: (
-                      <p>Esteettömyys sisältö</p>
-                    )
-                  },
-                  {
-                    label: "Tilavaraukset",
-                    children: (
-                      <p>Tilavaraukset sisältö</p>
-                    )
-                  },
-                  {
-                    label: "Reitti tänne",
-                    children: (
-                      <p>Reitti tänne sisältö</p>
-                    )
-                  },
-                  {
-                    label: "Tapahtumat",
-                    children: (
-                      <p>Tapahtumat sisältö</p>
-                    )
-                  },
-                  {
-                    label: "Verkossa",
-                    children: (
-                      <p>Verkossa sisältö</p>
-                    )
-                  },
-                  {
-                    label: "Palaute",
-                    children: (
-                      <p>Palaute sisältö</p>
-                    )
-                  },
-                ]}/>
+
+                {
+                  unit.www && unit.www.fi &&
+                  <a href={unit.www.fi}><p>Kotisivu</p></a>
+                }
+              </div>
+              <CustomExpansionPanel content={[
+                {
+                  label: "Esteettömyys",
+                  children: (
+                    <p>Esteettömyys sisältö</p>
+                  )
+                },
+                {
+                  label: "Tilavaraukset",
+                  children: (
+                    <p>Tilavaraukset sisältö</p>
+                  )
+                },
+                {
+                  label: "Reitti tänne",
+                  children: (
+                    <p>Reitti tänne sisältö</p>
+                  )
+                },
+                {
+                  label: "Tapahtumat",
+                  children: (
+                    <p>Tapahtumat sisältö</p>
+                  )
+                },
+                {
+                  label: "Verkossa",
+                  children: (
+                    <p>Verkossa sisältö</p>
+                  )
+                },
+                {
+                  label: "Palaute",
+                  children: (
+                    <p>Palaute sisältö</p>
+                  )
+                },
+              ]}/>
             </div>
           );
       }
