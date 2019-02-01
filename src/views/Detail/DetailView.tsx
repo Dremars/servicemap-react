@@ -60,7 +60,7 @@ interface DetailProps {
                   <p className="text-small">{unit.contract_type.description.fi}</p>
                 }
                 
-                <p>{`${unit.street_address.fi}, ${unit.address_zip} ${unit.municipality ? unit.municipality.charAt(0).toUpperCase() + unit.municipality.slice(1) : ''}`}</p>
+                <p>{`${unit.street_address && unit.street_address.fi}, ${unit.address_zip} ${unit.municipality ? unit.municipality.charAt(0).toUpperCase() + unit.municipality.slice(1) : ''}`}</p>
                 <CustomExpansionPanel content={[
                   {
                     label: "Esteettömyys",
