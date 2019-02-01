@@ -1,5 +1,5 @@
 import React, {createRef} from 'react'
-const { Map, Marker, Popup, TileLayer } = require('react-leaflet')
+const { Map, Marker, Popup, TileLayer, ZoomControl } = require('react-leaflet')
 require("proj4leaflet")
 var L = require("leaflet-mml-layers")
 import TransitStopTimes from'./TransitStopTimes'
@@ -75,6 +75,7 @@ class MapView extends React.Component<{}, MapComponentState> {
         ref={this.mapRef}
         onMoveEnd={()=> this.onZoomEvent(this.mapRef)}
         onClick={(e: any)=> console.log(e)}
+        zoomControl={false}
       >
         <TileLayer
           url="https://geoserver.hel.fi/mapproxy/wmts/osm-sm-hq/etrs_tm35fin_hq/{z}/{x}/{y}.png"
@@ -90,7 +91,9 @@ class MapView extends React.Component<{}, MapComponentState> {
                <TransitStopTimes stop={stop}/>
              </Popup>
         </Marker>)}
+        <ZoomControl position='bottomright'>
 
+        </ZoomControl>
       </Map> 
     )
   }
