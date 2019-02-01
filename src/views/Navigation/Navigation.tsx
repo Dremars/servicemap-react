@@ -151,7 +151,6 @@ class Navigation extends React.Component<NavigationProps> {
     const {unitStore} = this.injectedProps;
     const {history} = this.props;
     if (unitStore && unitStore.fetchUnits) {
-      console.log(e.target.value);
       keyboardHandler(() => {
         unitStore.fetchUnits(this.state.searchWord);
         try {

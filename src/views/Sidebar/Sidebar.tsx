@@ -22,7 +22,6 @@ class Sidebar extends React.Component<SidebarProps> {
     // If no content hide
     if (!this.props.children!! || this.props.children.length === 0)
       return <div />;
-    console.log(this.props.children);
 
     return (
       <div className="Sidebar">

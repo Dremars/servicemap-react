@@ -4,10 +4,10 @@ import { observable, computed, action } from 'mobx';
 // Search urls TODO move to config file
 const apiRootPath = 'https://api.hel.fi/servicemap/v2';
 const unitPath = (unitID: number) => {
-  return apiRootPath + '/unit/' + unitID + '/'
+  return apiRootPath + '/unit/' + unitID + '/?include=services'
 };
 const searchPath = (search: string, type: 'event' | 'unit,service', language: string) => {
-  return apiRootPath + '/search/?type=' + type + '&language=' + language + '&page_size=4&input=' + search;
+  return apiRootPath + '/search/?type=' + type + '&language=' + language + '&input=' + search;
 }
 
 
@@ -40,6 +40,28 @@ export default class UnitStore {
     }
   }
 
+
+  @action
+  fetchUnit = (unitID: number) => {
+    console.log('Fetching unit with id: ', unitID)
+    try {
+      fetch(unitPath(unitID), {
+        method: 'get',
+      })
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log('Unit fetch data: ',data)
+          // TODO: Not necessarily needed. Needs check for if data exists
+          this._cache.push(data);
+        })
+    } catch (error) {
+      this._errorMsg = 'Error fetching unit';
+      return Promise.reject(this._errorMsg);
+    }
+  }
+
   @computed
   get errorMessage(): string | null {
     return !this._errorMsg ? null : this._errorMsg;
@@ -57,15 +79,11 @@ export default class UnitStore {
 
   //TODO: Get unit
   getUnit(id: number): any {
+    console.log('cache after push: ',this._cache);
     const units = Array.from(this._cache).filter(unit => {
-      console.log(unit);
-      console.log(unit.id && unit.id == id)
-      return unit.id && unit.id == id;
+      return unit && unit.id && unit.id == id;
     });
-    console.log(this._cache);
-    console.log('id', id); 
-    console.log("get unit. Units: ", units);
-    return units && units.length === 1 && units[1] || undefined;
+    return units && units.length === 1 && units[0] || undefined;
   }
   /** Cache of reservations */
   /*

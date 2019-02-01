@@ -8,20 +8,7 @@ import Sidebar from './views/Sidebar/Sidebar';
 import  { Route, Switch, BrowserRouter } from "react-router-dom";
 import Search from './views/Search/Search';
 import store from './stores';
-import Detail from './views/Detail/Detail';
-
-
-
-// Testing router sidebar TODO remove
-function Test(props: any,) {
-	const { classes } = props;
-	return (
-    <div>
-      <h3>ID: {props.match.params.unit}</h3>
-    </div>
-	);
-}
-
+import DetailView from './views/Detail/DetailView';
 
 class App extends Component {
   render() {
@@ -39,7 +26,7 @@ class App extends Component {
                     />
                     <Route
                       path="/detail/:unit"
-                      component={Detail}
+                      component={DetailView}
                     />
                   </Switch>
                 </Sidebar>
