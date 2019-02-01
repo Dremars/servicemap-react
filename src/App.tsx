@@ -17,6 +17,7 @@ class App extends Component {
     return (
       <Provider {...store}>
         <div className="App">
+          <MapView></MapView>
           <BrowserRouter>
             <MuiThemeProvider theme={theme}>
                 <Navigation />
@@ -33,8 +34,7 @@ class App extends Component {
                   </Switch>
                 </Sidebar>
             </MuiThemeProvider>
-          </BrowserRouter>
-          <MapView></MapView>
+          </BrowserRouter>  
         </div>
       </Provider>
 
